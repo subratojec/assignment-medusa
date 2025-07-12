@@ -7,10 +7,10 @@ WORKDIR /app
 # Copy only dependency files first
 COPY package.json yarn.lock ./
 
-# Install production dependencies
-RUN yarn install --production
+# Install production dependencies with retry
+RUN for i in 1 2 3; do yarn install --production && break || sleep 5; done
 
-# Copy rest of the code
+# Copy the rest of the code
 COPY . .
 
 # Set environment variables
