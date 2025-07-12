@@ -17,6 +17,20 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      # ✅ Optional: Check if secrets are set
+      - name: Verify DockerHub Secrets
+        run: |
+          if [ -z "${{ secrets.DOCKERHUB_USERNAME }}" ]; then
+            echo "❌ DOCKERHUB_USERNAME is not set!"
+            exit 1
+          fi
+          if [ -z "${{ secrets.DOCKERHUB_PASSWORD }}" ]; then
+            echo "❌ DOCKERHUB_PASSWORD is not set!"
+            exit 1
+          fi
+          echo "✅ DockerHub secrets are set."
+
+      # ✅ Secure login to DockerHub using PAT (not printed in logs)
       - name: Log in to DockerHub
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
