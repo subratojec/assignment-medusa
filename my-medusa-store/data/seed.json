@@ -1,0 +1,34 @@
+[
+  {
+    "type": "region",
+    "data": {
+      "name": "Default Region",
+      "currency_code": "usd",
+      "tax_rate": 0,
+      "payment_providers": ["manual"],
+      "fulfillment_providers": ["manual"],
+      "countries": ["us"]
+    }
+  },
+  {
+    "type": "product",
+    "data": {
+      "title": "Demo T-Shirt",
+      "description": "A simple demo t-shirt product",
+      "type": {
+        "value": "tshirt"
+      },
+      "variants": [
+        {
+          "title": "Default",
+          "prices": [
+            {
+              "currency_code": "usd",
+              "amount": 2000
+            }
+          ]
+        }
+      ]
+    }
+  }
+]
